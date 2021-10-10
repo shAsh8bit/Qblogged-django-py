@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}Postblogs{% endblock title %}
+{% block body %}
+{% block add %}<a type="submit" class="btn btn-outline-light mx-1 " href="/blog" role="button">
+Back to Blogs</a>{% endblock add %}
+
+<div class="container">
+    <form method="POST" action="/postblog">
+        {% csrf_token %}
+        <div class="mb-2">
+            <label for="blogtitle" class="form-label"><b>TITLE of Your Blog</b> </label>
+            <input type="text" class="form-control" id="blogtitle" name="blogtitle" placeholder="Title">
+        </div>
+        {% comment %} <div class="mb-2">
+            <label for="blogslug" class="form-label"><b>Slug</b></label>
+            <input type="text" class="form-control" id="blogslug" name="blogslug"
+                placeholder="Add keyword/tags realted to your blog" >
+        </div> {% endcomment %}
+       
+        {% comment %} <div class="mb-2">
+            <label for="bloggername" class="form-label"><b>Name</b></label>
+            <input type="text" class="form-control" id="bloggername" name="bloggername"
+                placeholder="Name"></input> 
+        </div> {% endcomment %}
+
+        <div class="mb-2">
+            <label for="postbody" class="form-label"><b>Write your Content</b></label>
+            <textarea class="form-control" id="postbody" name="postbody" rows="3"
+                style="margin-top: 0px;margin-bottom: 10px;height: 285px;"></textarea>
+            <!-- <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+            <script>tinymce.init({ selector: 'textarea' });</script> -->
+            <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+            <script>tinymce.init({ selector: 'textarea'});</script>
+        </div>
+        <div class="d-grid gap-1 col-6 mx-auto">
+            <button class="btn btn-primary" type="submit"
+                style="background-color: #4d71d3; border-color: #4d71d3;">Submit</button>
+        </div>
+    </form>
+</div>
+
+{% endblock body %}

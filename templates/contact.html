@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %}Contact{% endblock title %}
+
+{% block body %}
+
+<div class="container-sm p-3 my-3 border ">
+    <h1 style="text-align: center;">Contact Us</h1>
+    <form method="POST"  action="/contact">
+        {% csrf_token %}
+        
+        <div class="mb-2">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+        </div>
+
+        <div class="mb-2">
+            <label for="email" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
+        </div>
+
+        <div class="mb-2">
+            <label for="phone" class="form-label">Phone Number</label>
+            <input type="phone" class="form-control" id="phone" name="phone" placeholder="eg. +91 XXXXXXXXXX">
+        </div>
+
+        <div class="mb-2">
+            <label for="feedback" class="form-label">Enter your Feedback</label>
+            <textarea class="form-control" id="feedback" name="feedback" rows="3"
+                style="margin-top: 0px;margin-bottom: 10px;height: 285px;"></textarea>
+        </div>
+        <div class="d-grid gap-1 col-6 mx-auto">
+        <button class="btn btn-primary" type="submit"
+            style="background-color: #4d71d3; ">Submit</button>
+        </div>
+    </form>
+</div>
+
+{% endblock body %}

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}Discussions{% endblock title %}
+{% block add %}<a type="submit" class="btn btn-outline-light mx-1 " href="/discussion/postQ" role="button">
+    Add Topic</a>{% endblock add %}
+      {% block blog %} <a class="nav-link" href="blog">Blogs</a>{% endblock blog %}
+{% block body %}
+<div class="album py-3 bg-light">
+    <div class="container">
+
+
+        <div class="row row-cols-1 row-cols-sm-2  g-3">
+            {% for DiscussionQ in allQ %}
+            <div class="col">
+                <div class="card shadow-sm">
+
+
+                    <div class="card-body">
+                        <h3 class="card-text">{{DiscussionQ.head |capfirst|truncatechars:40}}</h3>
+
+                        <p style="text-align:right;"><b>Posted by</b> <mark>{{DiscussionQ.blogger|capfirst}}</mark> <b>
+                                on</b>
+                            <mark>{{DiscussionQ.time}}</mark>
+                        </p>
+                        <div class="btn-group">
+                            <a class="btn btn-sm btn-outline-secondary" href="/discussion-inside/{{DiscussionQ.slugQ}}"
+                                role="button">View More</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</div>
+
+
+
+{% endblock body %}

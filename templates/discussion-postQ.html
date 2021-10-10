@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}Discussions{% endblock title %}
+{% block add %}<a type="submit" class="btn btn-outline-light mx-1 " href="/discussion" role="button">
+Back to Discussions</a>{% endblock add %}
+{% block body %}
+
+
+<div class="container">
+    <form method="POST" action="">
+        {% csrf_token %}
+        <div class="mb-2">
+            <label for="blogtitle" class="form-label"><b>Topic</b> </label>
+            <input type="text" class="form-control" id="Qtopic" name="Qtopic" placeholder="Title">
+        </div>
+
+        <div class="mb-2">
+            <label for="postbody" class="form-label"><b>Write your Content</b></label>
+            <textarea class="form-control" id="Qbody" name="Qbody" rows="3"
+                style="margin-top: 0px;margin-bottom: 10px;height: 285px;" ></textarea>
+            <!-- <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+            <script>tinymce.init({ selector: 'textarea' });</script> -->
+            <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+            <script>tinymce.init({ selector: 'textarea'});</script>
+        </div>
+        <div class="d-grid gap-1 col-6 mx-auto">
+            <button class="btn btn-primary" type="submit"
+                style="background-color: #4d71d3; border-color: #4d71d3;">Submit</button>
+        </div>
+    </form>
+</div>
+
+{% endblock body %}

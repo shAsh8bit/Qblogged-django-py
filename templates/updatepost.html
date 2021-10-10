@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}Update Post{% endblock title %}
+{% block body %}
+
+<div class="container">
+    <form method="POST" action="">
+        {% csrf_token %}
+        
+       
+        <div class="mb-2">
+            <label for="blogtitle" class="form-label"><b>TITLE of Your Blog</b> </label>
+            <input type="text" class="form-control" name="head" value="{{Blog.head}}">
+        </div>
+        {% comment %} <div class="mb-2">
+            <label for="blogslug" class="form-label"><b>Slug</b></label>
+            <input type="text" class="form-control" name="slug" value="{{Blog.slug}}" required>
+        </div> {% endcomment %}
+       
+
+        <div class="mb-2">
+            <label for="postbody" class="form-label"><b>Write your Content</b></label>
+            <textarea class="form-control" name= "body" value="{{Blog.body|safe}}"></textarea>
+            <!-- <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+            <script>tinymce.init({ selector: 'textarea' });</script> -->
+            <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+            <script>tinymce.init({ selector: 'textarea'});</script> 
+        </div>
+        <div class="d-grid gap-1 col-6 mx-auto">
+            <button class="btn btn-primary" type="submit"
+                style="background-color: #4d71d3; border-color: #4d71d3;">Submit</button>
+        </div>
+    </form>
+</div>
+
+{% endblock body %}

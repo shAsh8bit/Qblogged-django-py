@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block title %}Your Posts{% endblock title %}
+{% block add %}<a type="submit" class="btn btn-outline-light mx-1 " href="/blog" role="button">
+Back to Blogs</a>{% endblock add %}
+{% block body %}
+<div class="album py-3 bg-light">
+    <div class="container">
+
+
+        <div class="row row-cols-1 row-cols-sm-2  g-3">
+            {% for Blog in allblogs %}
+            <div class="col">
+                <div class="card shadow-sm">
+
+                    <div class="card-body">
+                        <h3 class="card-text">{{Blog.head}}</h3>
+
+                        <!-- <div>
+              <p class="card-text">{{Blog.body|truncatechars:'100'|safe}}</p>
+            </div>  -->
+                        <div class="d-flex justify-content-between align-items-center">
+
+                        </div>
+
+                        <p style="text-align:right;"><b>Written by</b> <mark>{{Blog.blogger|capfirst}}</mark> <b>Published on</b>
+                            <mark>{{Blog.time}}</mark>
+                        </p>
+                        <div class="btn-group" style="margin-right: 372px">
+                            <a class="btn btn-sm btn-outline-secondary" href="/blogpost/{{Blog.slug}}"
+                                role="button">View More</a>
+                        </div>
+                        <div class="btn-group" style="margin-right: 5px">
+                             <form action="{%url 'update_post' Blog.id %}">
+                             {% csrf_token %}
+                                <button class="btn btn-sm btn-outline-success" type="submit">Update</button></form>
+                        </div>
+                        <div class="btn-group">
+                       
+                            <form method="POST" action="{%url 'delete_post' Blog.id %}">
+                             {% csrf_token %}
+                                <button class="btn btn-sm btn-outline-danger" type="submit">Delete</button></form>
+                                
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</div>
+{% endblock body %}

@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+{% block title %}Discussions{% endblock title %}
+{% block add %}<a type="submit" class="btn btn-outline-light mx-1 " href="/discussion" role="button">
+Back to Discussions</a>{% endblock add %}
+     
+{% block body %}
+
+
+{% for DiscussionQ in Q %}
+<div class="container">
+
+
+    <div class="col-lg-12 col-md-12 col-sm-12 post-title-block">
+
+        <h1 class="text-center" style="font-family: Times New Roman, Times, serif;font-size:250%">
+            <b>{{DiscussionQ.head | capfirst}}</b>
+        </h1>
+        <ul class="list-inline text-center">
+            <li>Posted by {{DiscussionQ.blogger| capfirst}}</li>
+            <li>on {{DiscussionQ.time}}</li>
+           
+         
+        </ul>
+        <div class="container">
+            <h6 style="text-decoration: underline;">Detailed Question--</h6>
+        <div class="container"><h5>{{DiscussionQ.body|safe}}</h5>
+            </div>
+            
+        </div>
+    </div>
+</div>
+{% endfor %}
+<div class="album py-3 bg-light">
+
+
+
+    <div class="row row-cols-1   g-3">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                    aria-expanded="true" aria-controls="collapseOne">
+                    Answers ({{count}})
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+
+                  
+                    {% for DiscussionA in A %}
+                   
+                    <div class="col">
+                        <div class="card shadow-sm">
+
+
+                            <div class="card-body">
+                                <p style="text-align:left;"><b>Answered by </b>
+                                    <mark>{{DiscussionA.user|capfirst}}</mark> <b>
+                                        on</b>
+                                    <mark>{{DiscussionA.time}}</mark>
+                                <h3 class="card-text" style="font-size:110%">
+                                    {{DiscussionA.body|safe}}</h3>
+
+                                
+                                </p>
+
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+</div>
+ {% if user.is_authenticated %}
+<div class="container">
+
+ {% for DiscussionQ in Q %}
+   <form  action="" method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="postSno" value="{{DiscussionQ.id}}">
+         {% endfor %}
+
+        <div class="mb-2">
+        
+            <label for="postbody" class="form-label"><b>Your Answer</b></label>
+           
+            <textarea class="form-control" id="Abody" name="Abody" rows="3"
+                style="margin-top: 0px;margin-bottom: 10px;height: 285px;" ></textarea>
+            <!-- <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+        <script>tinymce.init({ selector: 'textarea' });</script> -->
+            <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+            <script>tinymce.init({ selector: 'textarea' });</script>
+        
+           
+            
+        </div>
+         
+        <div class="d-grid gap-1 col-6 mx-auto">
+            <button class="btn btn-primary" type="submit"
+                style="background-color: #4d71d3; border-color: #4d71d3;">Submit</button>
+        </div>
+       
+    </form>
+     {% else %}
+      <div class="container">  
+       <div class="mb-2">
+        
+            <label for="postbody" class="form-label"><b>Login/SignUp to Answer</b></label>
+          </div> 
+        <button type="submit" class="btn btn-primary mx-2 " data-bs-toggle="modal" data-bs-target="#manageLogin" >
+          Log In
+        </button>
+
+        <button type="submit" class="btn btn-primary mx-0" data-bs-toggle="modal" data-bs-target="#manageSignUp" >
+          Sign Up
+        </button>
+        </div>
+        
+</div>
+
+ 
+ {% endif %} 
+
+{% endblock body%}

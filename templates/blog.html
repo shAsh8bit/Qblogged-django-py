@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block title %}blogs{% endblock title %}
+{% block add %}<a type="submit" class="btn btn-outline-light mx-0 " href="/postblog" role="button">
+  Add Post</a>
+<a type="submit" class="btn btn-outline-light mx-2 " href="/yourposts" role="button">
+         My Posts</a>
+  {% endblock add %}
+  {% block blog %} <a class="nav-link"  href="/discussion" >Discussions</a>{% endblock blog %}
+
+{% block body %}
+<div class="album py-3 bg-light">
+  <div class="container">
+
+
+    <div class="row row-cols-1 row-cols-sm-2  g-3">
+      {% for Blog in allblogs %}
+      <div class="col">
+        <div class="card shadow-sm">
+          <!-- <svg class="bd-placeholder-img card-img-top" width="100%" height="150" role="img"
+            aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+            <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef"
+              dy=".3em">{{Blog.image}}</text>
+          </svg>-->
+
+          <div class="card-body">
+            <h3 class="card-text">{{Blog.head |capfirst|truncatechars:45}}</h3>
+           
+            <!-- <div>
+              <p class="card-text">{{Blog.body|truncatechars:'100'|safe}}</p>
+            </div>  -->
+            {% comment %} <div class="d-flex justify-content-between align-items-center">
+              
+             </div> {% endcomment %}
+            
+            <p style="text-align:right;" ><b>Written by</b> <mark>{{Blog.blogger|capfirst}}</mark> <b>Published on</b>
+                <mark>{{Blog.time}}</mark></p>
+                <div class="btn-group">
+                  <a class="btn btn-sm btn-outline-secondary" href="/blogpost/{{Blog.slug}}" role="button">View More</a>
+    
+                </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+{% endblock body %}
